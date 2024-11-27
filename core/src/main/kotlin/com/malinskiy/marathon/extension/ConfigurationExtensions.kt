@@ -28,6 +28,7 @@ import com.malinskiy.marathon.execution.strategy.SortingStrategy
 import com.malinskiy.marathon.execution.strategy.impl.batching.ClassNameBatchingStrategy
 import com.malinskiy.marathon.execution.strategy.impl.batching.FixedSizeBatchingStrategy
 import com.malinskiy.marathon.execution.strategy.impl.batching.IsolateBatchingStrategy
+import com.malinskiy.marathon.execution.strategy.impl.batching.MixedBatchingStrategy
 import com.malinskiy.marathon.execution.strategy.impl.flakiness.IgnoreFlakinessStrategy
 import com.malinskiy.marathon.execution.strategy.impl.flakiness.ProbabilityBasedFlakinessStrategy
 import com.malinskiy.marathon.execution.strategy.impl.pooling.OmniPoolingStrategy
@@ -106,6 +107,7 @@ fun BatchingStrategyConfiguration.toBatchingStrategy(): BatchingStrategy {
     return when (this) {
         is BatchingStrategyConfiguration.FixedSizeBatchingStrategyConfiguration -> FixedSizeBatchingStrategy(this)
         is BatchingStrategyConfiguration.ClassNameBatchingStrategyConfiguration -> ClassNameBatchingStrategy()
+        is BatchingStrategyConfiguration.MixedBatchingStrategyConfiguration -> MixedBatchingStrategy(this)
         BatchingStrategyConfiguration.IsolateBatchingStrategyConfiguration -> IsolateBatchingStrategy()
     }
 }
